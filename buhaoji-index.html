@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f3efe5">
+  <meta name="description" content="不好急 BuHaoJi.cn：事情可以慢慢来，灵感不必排队。">
+  <title>不好急 · BuHaoJi.cn</title>
+  <style>
+    :root {
+      --paper: #f3efe5;
+      --ink: #20231f;
+      --muted: #6e7168;
+      --red: #e4573d;
+      --green: #cfe2b6;
+      --line: rgba(32, 35, 31, .18);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+    a { color: inherit; }
+    .wrap { width: min(1120px, calc(100% - 44px)); margin: 0 auto; }
+    header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 25px 0; border-bottom: 1px solid var(--line);
+      font-size: 12px; letter-spacing: .12em;
+    }
+    .logo { font-weight: 900; letter-spacing: .08em; }
+    .status { color: var(--muted); }
+    .hero {
+      min-height: 660px; display: grid; grid-template-columns: 1.15fr .85fr;
+      align-items: center; gap: 30px; padding: 72px 0 82px;
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 9px;
+      font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted);
+    }
+    .eyebrow::before { content: ""; width: 24px; height: 2px; background: var(--red); }
+    h1 {
+      margin: 24px 0 22px; font-size: clamp(76px, 13vw, 160px);
+      letter-spacing: -.09em; line-height: .86; font-weight: 950;
+    }
+    h1 span { color: var(--red); }
+    .lead { max-width: 530px; font-size: clamp(19px, 2.3vw, 25px); line-height: 1.65; }
+    .lead strong { text-decoration: underline; text-decoration-color: var(--red); text-decoration-thickness: 3px; text-underline-offset: 5px; }
+    .sublead { max-width: 470px; margin-top: 18px; color: var(--muted); font-size: 14px; line-height: 1.9; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+      min-height: 48px; padding: 0 18px; border: 1px solid var(--ink);
+      text-decoration: none; font-size: 13px; font-weight: 700; transition: .2s ease;
+    }
+    .btn.primary { color: white; background: var(--ink); }
+    .btn:hover { transform: translateY(-3px); }
+    .art {
+      position: relative; min-height: 420px; display: grid; place-items: center;
+    }
+    .sun {
+      width: min(340px, 72vw); aspect-ratio: 1; border-radius: 50%;
+      background: var(--red); position: relative; display: grid; place-items: center;
+      box-shadow: 16px 18px 0 var(--ink);
+    }
+    .sun::before, .sun::after {
+      content: ""; position: absolute; border: 1px solid rgba(32,35,31,.4); border-radius: 50%;
+      width: 125%; height: 42%; transform: rotate(-28deg);
+    }
+    .sun::after { transform: rotate(54deg); width: 42%; height: 125%; }
+    .sun-text {
+      z-index: 1; color: var(--paper); text-align: center; font-size: clamp(48px, 8vw, 86px);
+      font-weight: 950; letter-spacing: -.08em; line-height: .95; transform: rotate(-8deg);
+    }
+    .sun-text small { display: block; margin-top: 12px; font-size: 12px; letter-spacing: .2em; }
+    .sticker {
+      position: absolute; right: 0; bottom: 38px; width: 122px; height: 122px;
+      display: grid; place-items: center; text-align: center; border-radius: 50%;
+      background: var(--green); border: 1px solid var(--ink); transform: rotate(10deg);
+      font-weight: 900; font-size: 17px; line-height: 1.35;
+    }
+    .ticker {
+      background: var(--ink); color: var(--paper); overflow: hidden; white-space: nowrap;
+      padding: 15px 0; font-size: 13px; letter-spacing: .13em;
+    }
+    .ticker span { display: inline-block; padding-left: 100%; animation: drift 25s linear infinite; }
+    @keyframes drift { to { transform: translateX(-100%); } }
+    section { padding: 82px 0; border-bottom: 1px solid var(--line); }
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 25px; margin-bottom: 34px; }
+    .section-kicker { color: var(--red); font-size: 11px; letter-spacing: .2em; font-weight: 800; }
+    h2 { margin: 10px 0 0; font-size: clamp(32px, 5vw, 55px); letter-spacing: -.06em; line-height: 1.1; }
+    .section-note { max-width: 320px; color: var(--muted); font-size: 13px; line-height: 1.8; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .card { min-height: 215px; padding: 23px; border: 1px solid var(--line); display: flex; flex-direction: column; justify-content: space-between; }
+    .card:nth-child(2) { background: var(--green); }
+    .card:nth-child(3) { background: #e8d7c5; }
+    .num { color: var(--muted); font-size: 11px; letter-spacing: .15em; }
+    .card h3 { margin: 28px 0 10px; font-size: 25px; letter-spacing: -.04em; }
+    .card p { margin: 0; color: #53574f; font-size: 13px; line-height: 1.8; }
+    .quote {
+      background: var(--green); padding: clamp(28px, 6vw, 70px);
+      display: grid; grid-template-columns: auto 1fr; gap: 22px; align-items: start;
+    }
+    .quote-mark { color: var(--red); font-size: 70px; font-weight: 900; line-height: .8; }
+    .quote p { margin: 0; font-size: clamp(23px, 4vw, 43px); line-height: 1.45; font-weight: 800; letter-spacing: -.04em; }
+    .quote small { display: block; margin-top: 20px; font-size: 12px; color: var(--muted); letter-spacing: .1em; }
+    .domain-box {
+      display: flex; justify-content: space-between; align-items: center; gap: 22px;
+      padding: 28px; border: 1px solid var(--ink);
+    }
+    .domain-label { color: var(--muted); font-size: 11px; letter-spacing: .15em; }
+    .domain-name { margin-top: 8px; font-size: clamp(24px, 5vw, 43px); font-weight: 900; letter-spacing: -.05em; overflow-wrap: anywhere; }
+    .domain-desc { margin-top: 8px; color: var(--muted); font-size: 13px; }
+    footer { display: flex; justify-content: space-between; gap: 18px; padding: 24px 0 32px; color: var(--muted); font-size: 11px; }
+    @media (max-width: 760px) {
+      .wrap { width: min(100% - 30px, 600px); }
+      .hero { min-height: auto; grid-template-columns: 1fr; padding: 60px 0 55px; }
+      .art { min-height: 340px; }
+      .sun { width: min(270px, 65vw); }
+      .sticker { right: 7%; bottom: 15px; width: 98px; height: 98px; font-size: 14px; }
+      section { padding: 58px 0; }
+      .section-head { display: block; }
+      .section-note { margin-top: 16px; }
+      .cards { grid-template-columns: 1fr; }
+      .card { min-height: 175px; }
+      .domain-box { align-items: flex-start; flex-direction: column; }
+      footer { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .ticker span { animation: none; padding-left: 0; }
+      *, *::before, *::after { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo">不好急 / BUHAOJI</div>
+      <div class="status">慢一点，也没关系。 &nbsp;·&nbsp; BuHaoJi.cn</div>
+    </header>
+
+    <main>
+      <div class="hero">
+        <div>
+          <div class="eyebrow">A small reminder for a busy world</div>
+          <h1>不好<span>急</span></h1>
+          <p class="lead">世界已经够快了。<br>你可以先 <strong>不好急。</strong></p>
+          <p class="sublead">
+            消息可以晚点回，答案可以慢慢找，人生不是每一题都要抢答。
+            这里没有倒计时，也不催你成功。先喝口水，再说。
+          </p>
+          <div class="actions">
+            <a class="btn primary" href="#slow">给自己 30 秒 <span>↓</span></a>
+            <a class="btn" href="#meaning">看看“不好急”的意思 <span>↗</span></a>
+          </div>
+        </div>
+        <div class="art" aria-label="红色太阳与从容主题的抽象图形">
+          <div class="sun">
+            <div class="sun-text">慢点<br>也行<small>NO RUSH CLUB</small></div>
+          </div>
+          <div class="sticker">今日任务<br>先别着急</div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="ticker" aria-hidden="true">
+    <span>别急着赢 · 别急着懂 · 别急着成为谁 · 给生活一点缓冲 · 别急着赢 · 别急着懂 · 别急着成为谁 · 给生活一点缓冲 · </span>
+  </div>
+
+  <div class="wrap">
+    <section id="meaning">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">01 / THE IDEA</div>
+          <h2>“不好急”不是拖延。<br>是给自己一点余地。</h2>
+        </div>
+        <p class="section-note">它是一句提醒，也是一种生活态度。不是所有事情都要立刻有答案，不是每一步都要跑在别人前面。</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <div class="num">NOTE 001</div>
+          <div>
+            <h3>慢一点，想清楚</h3>
+            <p>着急的时候先暂停。很多好主意，都是在不赶时间时冒出来的。</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="num">NOTE 002</div>
+          <div>
+            <h3>不必事事抢答</h3>
+            <p>你不是搜索引擎，也不是全天候客服。允许自己想一想，再给答案。</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="num">NOTE 003</div>
+          <div>
+            <h3>自己的节奏，自己定</h3>
+            <p>别人的进度条，不是你的倒计时。走得稳，也是一种很酷的速度。</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="slow">
+      <div class="quote">
+        <div class="quote-mark">“</div>
+        <div>
+          <p>现在，放下肩膀。<br>吸一口气。<br>很好，你已经完成了今天一件重要的事。</p>
+          <small>30-SECOND RESET / 不用打卡，也不用分享</small>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">02 / THE DOMAIN</div>
+          <h2>一个名字，一种态度。</h2>
+        </div>
+        <p class="section-note">BuHaoJi.cn：好记、有梗，也有一点点反着来的幽默。它可以是一句口头禅，也可以成为一个有个性的品牌。</p>
+      </div>
+      <div class="domain-box">
+        <div>
+          <div class="domain-label">YOUR LITTLE CORNER OF THE INTERNET</div>
+          <div class="domain-name">BuHaoJi.cn</div>
+          <div class="domain-desc">不好急 · 慢慢来俱乐部</div>
+        </div>
+        <a class="btn primary" href="mailto:YOUR_EMAIL_HERE?subject=BuHaoJi.cn%20%E5%90%88%E4%BD%9C%E6%B4%BD%E8%B0%88">聊聊这个名字 <span>↗</span></a>
+      </div>
+    </section>
+
+    <footer>
+      <span>© <span id="year">2026</span> BuHaoJi.cn · 慢慢来，也算在前进。</span>
+      <span>Take your time. You’re right on time.</span>
+    </footer>
+  </div>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
