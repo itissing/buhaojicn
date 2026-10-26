@@ -94,4 +94,226 @@
   }
   .grid {
     display: grid;
-    grid-template-colu
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 16px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px;
+    transition: transform .2s, border-color .2s;
+  }
+  .card:hover { transform: translateY(-4px); border-color: var(--accent); }
+  .card .emoji { font-size: 30px; }
+  .card h3 { margin: 10px 0 6px; font-size: 17px; }
+  .card p { color: var(--muted); font-size: 14px; }
+
+  .qa { display: flex; flex-direction: column; gap: 14px; }
+  .qa .item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+  }
+  .qa .q { font-weight: 700; }
+  .qa .q::before { content: "问："; color: var(--accent); }
+  .qa .a { color: var(--muted); margin-top: 6px; }
+  .qa .a::before { content: "答："; color: var(--accent2); }
+
+  .timer-box {
+    text-align: center;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 30px 20px;
+  }
+  .timer-box .label { color: var(--muted); font-size: 14px; }
+  .timer-box .time {
+    font-size: clamp(28px, 6vw, 44px);
+    font-weight: 800;
+    font-family: ui-monospace, Consolas, monospace;
+    color: var(--accent);
+    margin-top: 8px;
+  }
+  .timer-box .joke { color: var(--muted); font-size: 13px; margin-top: 10px; }
+
+  .sale {
+    background: linear-gradient(135deg, rgba(255,107,61,.12), rgba(255,210,61,.10));
+    border: 1px solid var(--accent);
+    border-radius: 18px;
+    padding: 40px 26px;
+    text-align: center;
+  }
+  .sale h2 { justify-content: center; font-size: 30px; }
+  .sale h2::before { display: none; }
+  .sale p { color: var(--muted); max-width: 620px; margin: 10px auto 0; }
+  .contact {
+    margin-top: 26px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 700;
+    font-size: 17px;
+    padding: 14px 34px;
+    border-radius: 999px;
+    transition: transform .15s, box-shadow .15s;
+  }
+  .contact:hover {
+    transform: scale(1.04);
+    box-shadow: 0 8px 30px rgba(255,107,61,.35);
+    text-decoration: none;
+    color: #fff;
+  }
+
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+    padding: 40px 20px 60px;
+  }
+  footer .forget { color: var(--accent2); }
+
+  .float-tag {
+    position: fixed;
+    color: rgba(255,255,255,.10);
+    font-weight: 800;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+    animation: floaty 9s ease-in-out infinite;
+  }
+  @keyframes floaty {
+    0%,100% { transform: translateY(0) rotate(var(--r, 0deg)); }
+    50% { transform: translateY(-24px) rotate(var(--r, 0deg)); }
+  }
+  main, header, footer { position: relative; z-index: 1; }
+</style>
+</head>
+<body>
+
+<span class="float-tag" style="top:12%; left:6%;  font-size:34px; --r:-8deg;">不好记</span>
+<span class="float-tag" style="top:30%; right:5%; font-size:28px; --r:6deg;">记不住</span>
+<span class="float-tag" style="top:58%; left:3%;  font-size:26px; --r:5deg;">忘了啥</span>
+<span class="float-tag" style="bottom:20%; right:8%; font-size:32px; --r:-6deg;">又是它</span>
+<span class="float-tag" style="top:70%; left:45%; font-size:22px; --r:3deg;">诶？</span>
+
+<header>
+  <div class="big">不好记</div>
+  <div class="domain">b u h a o j i . c n</div>
+  <p class="tagline">这大概是<span class="hl">最诚实的域名</span>了。</p>
+  <p class="sub">别的域名都在假装好记，只有它，把真相写在了脸上：<b>buhaoji.cn = 不好记.cn</b>。</p>
+  <div class="typewriter" id="tw"></div>
+</header>
+
+<main>
+  <section>
+    <h2>为什么选它？</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="emoji">🤥</div>
+        <h3>反向营销鼻祖</h3>
+        <p>当所有域名都在喊"记住我"，只有一个域名敢说"记不住我"。反差越大，印象越深——你已经记住"不好记"了，对吧？</p>
+      </div>
+      <div class="card">
+        <div class="emoji">🧠</div>
+        <h3>自带段子体质</h3>
+        <p>任何项目放在 buhaoji.cn 上，都自动获得一句现成的宣传语："这网站太有意思了，可惜域名不好记。"</p>
+      </div>
+      <div class="card">
+        <div class="emoji">🀄</div>
+        <h3>纯中文谐音</h3>
+        <p>buhaoji 四个字母，对应中文三字高频口语，见字即懂，无需解释。拼音域名里的"懂王"。</p>
+      </div>
+      <div class="card">
+        <div class="emoji">💬</div>
+        <h3>聊天终结者</h3>
+        <p>"你网站叫什么？" "不好记。" "……好记吗？" "不好记。" 这段对话，价值连城。</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>快问快答</h2>
+    <div class="qa">
+      <div class="item">
+        <div class="q">这个域名好不好记？</div>
+        <div class="a">不好记。但它好记的是"不好记"这件事，所以其实……挺好记的？</div>
+      </div>
+      <div class="item">
+        <div class="q">为什么不用个好记的域名？</div>
+        <div class="a">好记的域名都被人买了。而且，承认自己不好记，需要极大的勇气。</div>
+      </div>
+      <div class="item">
+        <div class="q">我为什么点进来了？</div>
+        <div class="a">说明你其实记得 buhaoji.cn。恭喜你，你的记忆力比你自己以为的要好。</div>
+      </div>
+      <div class="item">
+        <div class="q">这个网站是干什么的？</div>
+        <div class="a">现在是域名展示页，未来是你发挥创意的画布——或者，它就是你的下一个创业笑点。</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>你已经停留了……</h2>
+    <div class="timer-box">
+      <div class="label">本页打开时长（一个不太好记的数字，实时跳动）</div>
+      <div class="time" id="timer">00:00:00</div>
+      <div class="joke">根据不完全统计，停留超过 30 秒的人，其中 87.3% 在 3 天内忘记了是怎么来到这里的。<br>（本条数据同样不太好记，所以很可能是编的。）</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sale">
+      <h2>🏷️ 是的，它要转让了</h2>
+      <p><b>buhaoji.cn</b> 正在寻找一位新主人——一个愿意把这个"不好记"变得好记的人。支持主流平台安全过户，一手交钱一手交域名，童叟无欺。</p>
+      <p>适合用途：个人趣味主页、谐音梗品牌、备忘录/记事类应用、播客节目、反面教材博物馆……以及一切"你懂的"项目。</p>
+      <a class="contact" href="mailto:itissing@gmail.com?subject=我想买下%20buhaoji.cn">📩 联系我买域名</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>© buhaoji.cn —— 一个不好记的域名，正在等你把它变得好记。</p>
+  <p class="forget">如果你忘了这个域名，没关系，它已经预料到了。</p>
+</footer>
+
+<script>
+  // 打字机
+  const lines = [
+    "你为什么点进来了？哦，你也不记得了。",
+    "别的域名求你记住，它已经放弃挣扎了。",
+    "第一次见面，也请当作第一次见面。",
+    "把你正在做的事写在这里吧，先买再说。"
+  ];
+  const tw = document.getElementById("tw");
+  let li = 0, ci = 0, deleting = false;
+  function tick() {
+    const t = lines[li];
+    if (!deleting) {
+      ci++;
+      tw.textContent = t.slice(0, ci);
+      if (ci === t.length) { deleting = true; return setTimeout(tick, 1800); }
+    } else {
+      ci--;
+      tw.textContent = t.slice(0, ci);
+      if (ci === 0) { deleting = false; li = (li + 1) % lines.length; }
+    }
+    setTimeout(tick, deleting ? 30 : 90);
+  }
+  tick();
+
+  // 计时器
+  const start = Date.now();
+  function pad(n) { return String(n).padStart(2, "0"); }
+  setInterval(() => {
+    const s = Math.floor((Date.now() - start) / 1000);
+    document.getElementById("timer").textContent =
+      pad(Math.floor(s / 3600)) + ":" + pad(Math.floor(s / 60) % 60) + ":" + pad(s % 60);
+  }, 1000);
+</script>
+</body>
+</html>
