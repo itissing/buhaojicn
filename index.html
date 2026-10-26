@@ -283,23 +283,24 @@
                                 </div>
                                 <div>
                                     <div class="text-xs text-stone-500 font-mono">电子邮箱 Email</div>
-                                    <div class="text-sm font-mono text-stone-200">domain@buhaoji.cn</div>
+                                    <a href="mailto:itissing@gmail.com?subject=关于域名buhaoji.cn的咨询与报价" class="text-sm font-mono text-stone-200 hover:text-amber-400 transition-colors">itissing@gmail.com</a>
                                 </div>
                             </div>
-                            <button onclick="copyText('domain@buhaoji.cn', '邮箱地址已复制到剪贴板！')" class="px-3 py-1.5 rounded-lg bg-stone-800 group-hover:bg-amber-500 group-hover:text-stone-950 text-stone-300 text-xs font-medium transition-all">
+                            <button onclick="copyText('itissing@gmail.com', '邮箱地址已复制到剪贴板！')" class="px-3 py-1.5 rounded-lg bg-stone-800 group-hover:bg-amber-500 group-hover:text-stone-950 text-stone-300 text-xs font-medium transition-all">
                                 复制
                             </button>
                         </div>
 
-                        <!-- Inquiry Button / Modal Trigger -->
+                        <!-- Inquiry Button / Direct Mailto Trigger -->
                         <div class="p-4 rounded-xl bg-gradient-to-br from-amber-500/10 to-transparent border border-amber-500/20 flex items-center justify-between">
                             <div>
                                 <div class="text-sm font-medium text-stone-200">快速在线询价</div>
-                                <div class="text-xs text-stone-400">填写您的意向价格与联系方式</div>
+                                <div class="text-xs text-stone-400">点击直接发送邮件洽谈</div>
                             </div>
-                            <button onclick="openInquiryModal()" class="px-4 py-2 rounded-lg bg-amber-500 hover:bg-amber-400 text-stone-950 text-xs font-semibold transition-all">
-                                立即报价
-                            </button>
+                            <a href="mailto:itissing@gmail.com?subject=关于域名buhaoji.cn的咨询与报价" class="px-4 py-2 rounded-lg bg-amber-500 hover:bg-amber-400 text-stone-950 text-xs font-semibold transition-all inline-flex items-center gap-1.5">
+                                <span>立即报价</span>
+                                <i class="fa-solid fa-paper-plane text-xs"></i>
+                            </a>
                         </div>
                     </div>
 
@@ -456,33 +457,6 @@
             resultBox.classList.remove('hidden');
             btnText.textContent = "再次测试 (已验证记住了)";
         }
-
-        // Inquiry Modal Handling
-        function openInquiryModal() {
-            const modal = document.getElementById('inquiry-modal');
-            modal.classList.remove('opacity-0', 'pointer-events-none');
-            modal.classList.add('opacity-100', 'pointer-events-auto');
-        }
-
-        function closeInquiryModal() {
-            const modal = document.getElementById('inquiry-modal');
-            modal.classList.remove('opacity-100', 'pointer-events-auto');
-            modal.classList.add('opacity-0', 'pointer-events-none');
-        }
-
-        function handleInquirySubmit(e) {
-            e.preventDefault();
-            closeInquiryModal();
-            showToast("意向已收到！我会尽快与您取得联系。");
-            document.getElementById('inquiry-form').reset();
-        }
-
-        // Close modal when clicking on backdrop
-        document.getElementById('inquiry-modal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeInquiryModal();
-            }
-        });
     </script>
 </body>
 </html>
