@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>buhaoji.cn — 一个假装不好记的域名</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        serif: ['"Noto Serif SC"', 'Georgia', 'serif'],
+                        mono: ['"Fira Code"', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#fbf7f5',
+                            100: '#f6ede8',
+                            200: '#edd9ce',
+                            500: '#d97706',
+                            800: '#1c1917',
+                            900: '#0c0a09',
+                            gold: '#f59e0b',
+                            accent: '#e11d48'
+                        }
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Noise Texture Overlay */
+        .bg-noise {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+        }
+        
+        .glow-effect {
+            box-shadow: 0 0 50px -10px rgba(217, 119, 6, 0.15);
+        }
+
+        /* Glassmorphism Effect */
+        .glass-card {
+            background: rgba(28, 25, 23, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card-hover:hover {
+            border-color: rgba(245, 158, 11, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px -10px rgba(245, 158, 11, 0.1);
+        }
+
+        /* Selection styling */
+        ::selection {
+            background: #f59e0b;
+            color: #0c0a09;
+        }
+    </style>
+</head>
+<body class="bg-[#0a0908] text-stone-300 font-sans antialiased selection:bg-amber-500 selection:text-stone-950 min-h-screen flex flex-col justify-between relative overflow-x-hidden bg-noise">
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed top-6 right-6 z-50 transform translate-y-[-100px] opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="glass-card bg-stone-900/90 text-stone-100 px-5 py-3.5 rounded-xl shadow-2xl border border-amber-500/30 flex items-center gap-3">
+            <i class="fa-solid fa-circle-check text-amber-500 text-lg"></i>
+            <span id="toast-message" class="text-sm font-medium">复制成功！</span>
+        </div>
+    </div>
+
+    <!-- Background Ambient Glows -->
+    <div class="fixed top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-amber-600/10 rounded-full blur-[140px] pointer-events-none -z-10"></div>
+    <div class="fixed bottom-10 right-10 w-[400px] h-[300px] bg-rose-600/5 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+
+    <!-- Navigation Header -->
+    <header class="w-full max-w-6xl mx-auto px-6 py-8 flex justify-between items-center z-10">
+        <div class="flex items-center gap-2">
+            <div class="w-3 h-3 rounded-full bg-amber-500 animate-pulse"></div>
+            <span class="font-mono font-bold text-lg tracking-tight text-stone-100">buhaoji<span class="text-amber-500">.cn</span></span>
+        </div>
+        <a href="#acquisition" class="text-xs font-medium uppercase tracking-widest text-stone-400 hover:text-amber-400 border border-stone-800 hover:border-amber-500/40 px-4 py-2 rounded-full transition-all duration-300 bg-stone-900/50">
+            域名询价 / Transfer Inquiry
+        </a>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="w-full max-w-5xl mx-auto px-6 pt-6 pb-20 flex-grow flex flex-col items-center">
+
+        <!-- 1. HERO SECTION -->
+        <section class="text-center my-12 md:my-20 max-w-3xl">
+            <!-- Pinyin Badge -->
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-mono mb-8">
+                <i class="fa-solid fa-language text-xs"></i>
+                <span>bù hǎo jì · 汉语拼音全拼</span>
+            </div>
+
+            <!-- Main Domain Name Title -->
+            <h1 class="text-5xl sm:text-7xl md:text-8xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-stone-100 via-stone-200 to-stone-500 font-mono mb-6 select-all cursor-pointer hover:opacity-90 transition-opacity" title="点击复制域名" onclick="copyText('buhaoji.cn', '域名 buhaoji.cn 已复制到剪贴板！')">
+                buhaoji<span class="text-amber-500">.cn</span>
+            </h1>
+
+            <!-- Main Tagline -->
+            <p class="text-2xl md:text-3xl font-serif text-stone-200 mb-6 leading-relaxed">
+                叫『不好记』，偏偏最难忘。
+            </p>
+
+            <!-- Clarification Subtitle -->
+            <p class="text-stone-400 text-sm md:text-base leading-relaxed max-w-xl mx-auto font-light">
+                <strong class="text-stone-200 font-medium">不好记（Bu Hao Ji）</strong>，非<span class="line-through text-stone-600 mx-1">不好急</span>。
+                <br>以反差打破常规，用幽默自嘲成就独树一帜的记忆点。
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="mt-10 flex flex-wrap justify-center items-center gap-4">
+                <a href="#acquisition" class="px-7 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-stone-950 font-semibold text-sm shadow-lg shadow-amber-500/20 transition-all transform hover:-translate-y-0.5 flex items-center gap-2">
+                    <span>洽谈域名转让</span>
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+                <button onclick="copyText('buhaoji.cn', '域名已复制到剪贴板！')" class="px-6 py-3.5 rounded-xl glass-card text-stone-300 hover:text-stone-100 text-sm font-mono border border-stone-800 hover:border-stone-700 transition-all flex items-center gap-2">
+                    <i class="fa-regular fa-copy text-stone-400"></i>
+                    <span>复制域名</span>
+                </button>
+            </div>
+        </section>
+
+
+        <!-- 2. INTERACTIVE MEMORY TEST WIDGET -->
+        <section class="w-full max-w-2xl my-10">
+            <div class="glass-card rounded-2xl p-6 md:p-8 relative overflow-hidden border border-stone-800/80">
+                <!-- Top Header for Widget -->
+                <div class="flex items-center justify-between pb-4 border-b border-stone-800 mb-6">
+                    <div class="flex items-center gap-2 text-stone-400 text-xs font-mono uppercase tracking-wider">
+                        <i class="fa-solid fa-brain text-amber-500"></i>
+                        <span>记忆力测试 / Memory Test</span>
+                    </div>
+                    <span class="text-xs text-stone-500 font-mono">Interactive</span>
+                </div>
+
+                <!-- Test Content -->
+                <div class="text-center">
+                    <h3 class="text-lg md:text-xl font-medium text-stone-200 mb-3">
+                        能记住这个域名吗？
+                    </h3>
+                    <p class="text-stone-400 text-xs md:text-sm mb-6">
+                        点击下方按钮，测测你是否真的觉得这个域名“不好记”
+                    </p>
+
+                    <!-- Interaction Trigger Button -->
+                    <button id="memory-btn" onclick="runMemoryTest()" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-stone-800 hover:bg-stone-700 text-amber-400 hover:text-amber-300 border border-amber-500/30 font-medium text-sm transition-all duration-300 shadow-lg flex items-center justify-center gap-2 mx-auto">
+                        <i class="fa-solid fa-bolt text-xs"></i>
+                        <span id="memory-btn-text">点击开始测试：我记住了吗？</span>
+                    </button>
+
+                    <!-- Hidden Dynamic Outcome Box -->
+                    <div id="memory-result" class="hidden mt-6 p-4 rounded-xl bg-amber-500/10 border border-amber-500/30 text-stone-200 text-sm font-light transition-all animate-fade-in">
+                        <p id="memory-result-text" class="text-amber-300 font-medium mb-1"></p>
+                        <p id="memory-result-sub" class="text-stone-400 text-xs"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 3. WHY THIS DOMAIN / DOMAIN VALUE STORY -->
+        <section class="w-full my-16">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl md:text-3xl font-serif text-stone-100 mb-3">域 名 独 特 标 签</h2>
+                <p class="text-stone-400 text-sm">看似自嘲的名称背后，隐藏着极高的人性心理记忆红利</p>
+            </div>
+
+            <!-- Value Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- Card 1 -->
+                <div class="glass-card glass-card-hover rounded-2xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 mb-5">
+                            <i class="fa-solid fa-spell-check text-lg"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-stone-100 mb-2">标准六字母全拼</h3>
+                        <p class="text-stone-400 text-xs md:text-sm leading-relaxed">
+                            <span class="font-mono text-amber-400">bu-hao-ji</span> 对应“不好记”完美拼音。6字母纯正拼音，结构对称，韵律感极佳，没有任何生硬的缩写或数字干扰。
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-stone-800/60 text-xs font-mono text-stone-500">
+                        Tag: #全拼域名 #自然拼读
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-card glass-card-hover rounded-2xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 mb-5">
+                            <i class="fa-solid fa-masks-theater text-lg"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-stone-100 mb-2">反差萌与心理暗示</h3>
+                        <p class="text-stone-400 text-xs md:text-sm leading-relaxed">
+                            心理学中的“反叛效应”。越强调“不好记”，用户的心理防御越低，反而会因为这种自我调侃而过目不忘，品牌传播力极强。
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-stone-800/60 text-xs font-mono text-stone-500">
+                        Tag: #反讽艺术 #记忆红利
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-card glass-card-hover rounded-2xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 mb-5">
+                            <i class="fa-solid fa-shapes text-lg"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-stone-100 mb-2">广泛的应用场景</h3>
+                        <p class="text-stone-400 text-xs md:text-sm leading-relaxed">
+                            极具包容性。非常适合作为个人极简博客、闪记备忘录、知识库（Notebook）、密码管理器、反思日志或创意工作室的官方入口。
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-stone-800/60 text-xs font-mono text-stone-500">
+                        Tag: #笔记应用 #极简博客 #知识库
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- 4. DOMAIN TRANSFER & CONTACT INFO -->
+        <section id="acquisition" class="w-full my-12 scroll-mt-10">
+            <div class="glass-card rounded-3xl p-8 md:p-12 border border-amber-500/20 relative overflow-hidden shadow-2xl">
+                <!-- Background Accent Glow inside card -->
+                <div class="absolute -right-20 -bottom-20 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-10 pb-8 border-b border-stone-800">
+                    <div>
+                        <div class="inline-flex items-center gap-2 text-xs font-mono text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20 mb-3">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                            <span>可转让 / Available for Acquisition</span>
+                        </div>
+                        <h2 class="text-3xl font-serif text-stone-100">域名转让洽谈</h2>
+                        <p class="text-stone-400 text-sm mt-1">此域名诚意出让，欢迎个人创作者、创业团队或企业询价。</p>
+                    </div>
+                    <div class="text-left md:text-right">
+                        <div class="text-xs text-stone-500 font-mono">DOMAIN NAME</div>
+                        <div class="text-2xl font-mono font-bold text-amber-400">buhaoji.cn</div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                    <!-- Contact Cards -->
+                    <div class="space-y-4">
+                        <h3 class="text-xs font-mono text-stone-400 uppercase tracking-wider mb-2">联系方式 / Direct Contact</h3>
+                        
+                        <!-- Email Contact Box -->
+                        <div class="flex items-center justify-between p-4 rounded-xl bg-stone-900/80 border border-stone-800 hover:border-stone-700 transition-all group">
+                            <div class="flex items-center gap-3.5">
+                                <div class="w-10 h-10 rounded-lg bg-stone-800 flex items-center justify-center text-amber-400">
+                                    <i class="fa-regular fa-envelope text-lg"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs text-stone-500 font-mono">电子邮箱 Email</div>
+                                    <div class="text-sm font-mono text-stone-200">domain@buhaoji.cn</div>
+                                </div>
+                            </div>
+                            <button onclick="copyText('domain@buhaoji.cn', '邮箱地址已复制到剪贴板！')" class="px-3 py-1.5 rounded-lg bg-stone-800 group-hover:bg-amber-500 group-hover:text-stone-950 text-stone-300 text-xs font-medium transition-all">
+                                复制
+                            </button>
+                        </div>
+
+                        <!-- Inquiry Button / Modal Trigger -->
+                        <div class="p-4 rounded-xl bg-gradient-to-br from-amber-500/10 to-transparent border border-amber-500/20 flex items-center justify-between">
+                            <div>
+                                <div class="text-sm font-medium text-stone-200">快速在线询价</div>
+                                <div class="text-xs text-stone-400">填写您的意向价格与联系方式</div>
+                            </div>
+                            <button onclick="openInquiryModal()" class="px-4 py-2 rounded-lg bg-amber-500 hover:bg-amber-400 text-stone-950 text-xs font-semibold transition-all">
+                                立即报价
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Escrow & Security Info -->
+                    <div class="bg-stone-900/50 p-6 rounded-2xl border border-stone-800/80">
+                        <h3 class="text-xs font-mono text-stone-400 uppercase tracking-wider mb-3">交易与安全保证</h3>
+                        <ul class="space-y-2.5 text-xs text-stone-400 leading-relaxed">
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-shield-halved text-amber-500 mt-0.5"></i>
+                                <span>支持各大主流平台中介担保交易（万网 / 阿里云 / 腾讯云 / DNSPod / 易名中国等）。</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-bolt text-amber-500 mt-0.5"></i>
+                                <span>确认交易后可即时过户（Push）或提供转移密码，安全快捷。</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-handshake text-amber-500 mt-0.5"></i>
+                                <span>价格公道合理，接受有诚意的合理报价，非诚勿扰。</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Footer disclaimer inside box -->
+                <p class="mt-8 pt-6 border-t border-stone-800/60 text-center text-xs text-stone-500 font-light">
+                    “域名诚意出让，欢迎有缘人询价。静水深流，期待与明眼人成就一个好项目。”
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- INQUIRY MODAL -->
+    <div id="inquiry-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300">
+        <div class="glass-card bg-stone-900 border border-stone-700 rounded-2xl max-w-md w-full p-6 shadow-2xl relative transform scale-95 transition-all duration-300 id-modal-box">
+            <!-- Close Button -->
+            <button onclick="closeInquiryModal()" class="absolute top-4 right-4 text-stone-400 hover:text-stone-100 p-2">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <h3 class="text-xl font-serif text-stone-100 mb-1">域名询价申请</h3>
+            <p class="text-xs text-stone-400 mb-6">针对域名 <span class="text-amber-400 font-mono">buhaoji.cn</span> 提交意向</p>
+
+            <form id="inquiry-form" onsubmit="handleInquirySubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-mono text-stone-400 mb-1.5">您的联系方式 (微信 / 手机 / 邮箱)</label>
+                    <input type="text" required placeholder="例如: e-mail@example.com / 微信" class="w-full px-4 py-2.5 rounded-xl bg-stone-950 border border-stone-800 text-stone-200 text-sm focus:outline-none focus:border-amber-500 transition-colors">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-mono text-stone-400 mb-1.5">意向报价 (CNY / ¥)</label>
+                    <input type="text" placeholder="例如: 诚意报价" class="w-full px-4 py-2.5 rounded-xl bg-stone-950 border border-stone-800 text-stone-200 text-sm focus:outline-none focus:border-amber-500 transition-colors">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-mono text-stone-400 mb-1.5">备注说明 (可选)</label>
+                    <textarea rows="3" placeholder="拟用途或交易平台偏好..." class="w-full px-4 py-2.5 rounded-xl bg-stone-950 border border-stone-800 text-stone-200 text-sm focus:outline-none focus:border-amber-500 transition-colors resize-none"></textarea>
+                </div>
+
+                <button type="submit" class="w-full py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-stone-950 font-semibold text-sm transition-all shadow-lg shadow-amber-500/20">
+                    发送询价意向
+                </button>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- 5. FOOTER -->
+    <footer class="w-full border-t border-stone-900 py-8 px-6 text-center text-stone-500 text-xs font-mono">
+        <div class="max-w-5xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div>
+                &copy; <span id="year"></span> buhaoji.cn. All rights reserved.
+            </div>
+            <div class="flex items-center gap-4 text-stone-400">
+                <span class="hover:text-amber-400 cursor-pointer transition-colors" onclick="copyText('buhaoji.cn', '域名已复制！')">buhaoji.cn</span>
+                <span>•</span>
+                <span class="text-stone-600">不好记，非不好急</span>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Set dynamic current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Toast Notification System
+        let toastTimeout;
+        function copyText(text, message) {
+            // Using standard execCommand fallback for seamless clipboard copying
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed";
+            textArea.style.opacity = "0";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+
+            try {
+                document.execCommand('copy');
+                showToast(message || "已成功复制到剪贴板！");
+            } catch (err) {
+                showToast("复制失败，请手动复制");
+            }
+
+            document.body.removeChild(textArea);
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            
+            toastMsg.textContent = msg;
+            toast.classList.remove('translate-y-[-100px]', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-[-100px]', 'opacity-0');
+            }, 3000);
+        }
+
+        // Memory Test Interactive Logic
+        const memoryOutcomes = [
+            {
+                title: "🎉 恭喜！你的记忆力击败了 99.9% 的网民！",
+                sub: "你看，刚说完『不好记』，你转眼就记住了。这说明该域名自带极致的反差吸引力！"
+            },
+            {
+                title: "🧠 毫无悬念！这域名一点都不『不好记』！",
+                sub: "标准全拼 bù hǎo jì，越自嘲越难忘。这就是它的魔力所在。"
+            },
+            {
+                title: "⚡ 100% 记住概率！",
+                sub: "心理学反叛效应示范成功。你已经成功记住了 buhaoji.cn。"
+            }
+        ];
+
+        let clickCount = 0;
+        function runMemoryTest() {
+            const resultBox = document.getElementById('memory-result');
+            const resultTitle = document.getElementById('memory-result-text');
+            const resultSub = document.getElementById('memory-result-sub');
+            const btnText = document.getElementById('memory-btn-text');
+
+            const outcome = memoryOutcomes[clickCount % memoryOutcomes.length];
+            clickCount++;
+
+            resultTitle.textContent = outcome.title;
+            resultSub.textContent = outcome.sub;
+            
+            resultBox.classList.remove('hidden');
+            btnText.textContent = "再次测试 (已验证记住了)";
+        }
+
+        // Inquiry Modal Handling
+        function openInquiryModal() {
+            const modal = document.getElementById('inquiry-modal');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modal.classList.add('opacity-100', 'pointer-events-auto');
+        }
+
+        function closeInquiryModal() {
+            const modal = document.getElementById('inquiry-modal');
+            modal.classList.remove('opacity-100', 'pointer-events-auto');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        function handleInquirySubmit(e) {
+            e.preventDefault();
+            closeInquiryModal();
+            showToast("意向已收到！我会尽快与您取得联系。");
+            document.getElementById('inquiry-form').reset();
+        }
+
+        // Close modal when clicking on backdrop
+        document.getElementById('inquiry-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeInquiryModal();
+            }
+        });
+    </script>
+</body>
+</html>
