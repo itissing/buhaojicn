@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>buhaoji.cn —— 不好记</title>
+<meta name="description" content="buhaoji.cn：一个连域名都叫『不好记』的网站。它已经记住了你想记记不住的一切，除了你为什么点进来。">
+<style>
+  :root {
+    --bg: #0f1115;
+    --fg: #f2f2f2;
+    --muted: #9aa0a6;
+    --accent: #ff6b3d;
+    --accent2: #ffd23d;
+    --card: #171a21;
+    --border: #2a2f3a;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", -apple-system, sans-serif;
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  a { color: var(--accent2); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  header {
+    text-align: center;
+    padding: 90px 20px 40px;
+    position: relative;
+  }
+  .big {
+    font-size: clamp(56px, 14vw, 160px);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.1;
+    user-select: none;
+  }
+  .domain {
+    font-size: clamp(16px, 3vw, 24px);
+    color: var(--muted);
+    margin-top: 10px;
+    letter-spacing: 0.35em;
+  }
+  .tagline {
+    margin-top: 26px;
+    font-size: clamp(18px, 3.5vw, 26px);
+    font-weight: 600;
+  }
+  .tagline .hl { color: var(--accent); }
+  .sub {
+    margin-top: 12px;
+    color: var(--muted);
+    max-width: 560px;
+    margin-left: auto; margin-right: auto;
+    font-size: 15px;
+  }
+
+  .typewriter {
+    margin-top: 30px;
+    display: inline-block;
+    font-family: ui-monospace, "SF Mono", Consolas, monospace;
+    font-size: clamp(14px, 2.5vw, 18px);
+    color: var(--accent2);
+    border-right: 2px solid var(--accent2);
+    padding-right: 4px;
+    animation: blink 1s step-end infinite;
+    min-height: 1.6em;
+    max-width: 92vw;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  @keyframes blink { 50% { border-color: transparent; } }
+
+  section { max-width: 860px; margin: 0 auto; padding: 50px 20px; }
+  h2 {
+    font-size: 26px;
+    margin-bottom: 24px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  h2::before {
+    content: "";
+    width: 10px; height: 26px;
+    background: linear-gradient(180deg, var(--accent), var(--accent2));
+    border-radius: 5px;
+    flex: none;
+  }
+  .grid {
+    display: grid;
+    grid-template-colu
